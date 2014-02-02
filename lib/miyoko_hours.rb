@@ -71,7 +71,10 @@ class MiyokoHours
       if data["text"]
         if data["retweeted_status"]
           handle_retweet(data)
+        else
+          handle_tweet(data)
         end
+        return
       end
     end
 
@@ -85,6 +88,14 @@ class MiyokoHours
       name = user["screen_name"]
 
       LOGGER.info "@%s (♺) %s" % [name, expand_url(text, data["entities"]["urls"])]
+    end
+
+    def handle_tweet(data)
+      text = data["text"]
+      user = data["user"]
+      name = user["screen_name"]
+
+      LOGGER.info "@%s: %s" % [name,expand_url(text,data["entities"]["urls"])]
     end
 
     def expand_url(text,urls)
