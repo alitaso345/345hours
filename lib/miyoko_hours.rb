@@ -63,7 +63,14 @@ class MiyokoHours
 
     private
     def handle(data)
-      LOGGER.info "data ok"
+      if data["friends"]
+        handle_friends(data)
+        return
+      end
+    end
+
+    def handle_friends(data)
+      LOGGER.info "You are following %d users" % data["friends"].size
     end
   end
 end
