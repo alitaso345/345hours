@@ -95,7 +95,7 @@ class MiyokoHours
       user = data["user"]
       name = user["screen_name"]
 
-      LOGGER.info "@%s: %s" % [name,expand_url(text,data["entities"]["urls"])]
+      LOGGER.info Rainbow("@%s: %s").green % [name,expand_url(text,data["entities"]["urls"])]
       `echo '#{expand_url(text,data["entities"]["urls"])}' | say -v 'Alex'`
     end
 

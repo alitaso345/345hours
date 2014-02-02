@@ -10,6 +10,7 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
+    rainbow (2.0.0)
     simple_oauth (0.1.9)
     slop (3.4.7)
     twitter-stream (0.1.16)
@@ -24,5 +25,6 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   pry
+  rainbow
   twitter-stream
   yajl-ruby
