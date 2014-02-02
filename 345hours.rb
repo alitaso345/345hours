@@ -8,10 +8,10 @@ else
   Bundler.require(:default, :development)
 end
 
-require_relative "lib/twenty_nine_hours"
+require_relative "lib/miyoko_hours"
 
 path = ENV["SETTINGS_FILE_PATH"] || File.join(__dir__, "settings.yml")
 
 settings = YAML.load(open(path))
 
-TwentyNineHours.new(settings).watch
+MiyokoHours.new(settings).watch
