@@ -67,10 +67,35 @@ class MiyokoHours
         handle_friends(data)
         return
       end
+
+      if data["text"]
+        if data["retweeted_status"]
+          handle_retweet(data)
+        end
+      end
     end
 
     def handle_friends(data)
       LOGGER.info "You are following %d users" % data["friends"].size
+    end
+
+    def handle_retweet(data)
+      text = data["text"]
+      user = data["user"]
+      name = user["screen_name"]
+
+      LOGGER.info "@%s (♺) %s" % [name, expand_url(text, data["entities"]["urls"])]
+    end
+
+    def expand_url(text,urls)
+      return text if urls.empty?
+
+      urls.inject(text) do |result,entry|
+        url = entry["url"]
+        expanded = entry["expanded_url"]
+
+        result.sub(url,expanded)
+      end
     end
   end
 end
