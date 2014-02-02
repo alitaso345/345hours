@@ -47,7 +47,23 @@ class MiyokoHours
     def start
       EventMachine::run{
         EventMachine::defer{
-          @stream = Twitter::JSONStream.connect(@options)}}
+          @stream = Twitter::JSONStream.connect(@options)
+          
+          @stream.each_item do |item|
+            data = Yajl::Parser.parse(item)
+            handle(data)
+          end
+
+          @stream.on_error do |message|
+            LOGGER.error "On error:#{message}"
+          end
+        }
+      }
+    end
+
+    private
+    def handle(data)
+      LOGGER.info "data ok"
     end
   end
 end
