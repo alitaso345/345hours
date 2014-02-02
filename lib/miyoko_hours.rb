@@ -45,7 +45,9 @@ class MiyokoHours
     end
 
     def start
-
+      EventMachine::run{
+        EventMachine::defer{
+          @stream = Twitter::JSONStream.connect(@options)}}
     end
   end
 end
