@@ -23,7 +23,7 @@ class MiyokoHours
   end
 
   def watch
-
+    @streamer.start
   end
 
   def status
@@ -34,6 +34,17 @@ class MiyokoHours
 
   class Streamer
     def initialize(me,oauth)
+      @me = me
+      @options = {
+        host: "userstream.twitter.com",
+        path: "/2/user.json",
+        ssl:  true,
+        oauth:oauth
+      }
+
+    end
+
+    def start
 
     end
   end
